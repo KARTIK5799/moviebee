@@ -1,5 +1,4 @@
-
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const Card = ({ title, description, genre, stars, image }) => {
   const formattedStars = parseFloat(stars).toFixed(1);
@@ -9,7 +8,10 @@ const Card = ({ title, description, genre, stars, image }) => {
       <img className="w-full" src={image} alt={`${title} Poster`} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{title}</div>
-        <div className="h-28 overflow-y-auto text-gray-700 text-base" dangerouslySetInnerHTML={{ __html: description }} />
+        <div
+          className="h-28 overflow-y-auto text-gray-700 text-base"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       </div>
       <div className="px-6 py-4 flex">
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 overflow-hidden">

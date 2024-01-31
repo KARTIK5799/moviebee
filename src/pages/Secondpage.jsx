@@ -1,13 +1,12 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Modal from "react-modal";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
+import Footer from "../components/Footer/Footer";
 
 const Secondpage = () => {
- 
   const { id } = useParams();
-
 
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,41 +31,34 @@ const Secondpage = () => {
     fetchSelectedMovie();
   }, [id]);
 
-  
   const openModal = () => {
     setIsModalOpen(true);
   };
 
-  
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-
-const handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-  
-   
+
     setFormData({
       ...formData,
       [name]: value,
     });
-  
 
     if (name === "numberOfTickets") {
       const numberOfTickets = parseInt(value, 10) || 0;
       const ticketPrice = 140;
       const totalPrice = numberOfTickets * ticketPrice;
-  
+
       setFormData((prevData) => ({
         ...prevData,
         totalPrice,
       }));
     }
   };
-  
 
-  
   const handleBookTicket = () => {
     const numberOfTickets = parseInt(formData.numberOfTickets, 10) || 0;
     const ticketPrice = 140;
@@ -80,7 +72,6 @@ const handleInputChange = (e) => {
     openModal();
   };
 
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -90,7 +81,6 @@ const handleInputChange = (e) => {
       formData.age &&
       formData.numberOfTickets
     ) {
-     
       const bookingData = {
         name: formData.name,
         email: formData.email,
@@ -103,7 +93,6 @@ const handleInputChange = (e) => {
 
       alert("Congratulations! Booking successful");
 
-      
       closeModal();
       setFormData({
         name: "",
@@ -121,16 +110,13 @@ const handleInputChange = (e) => {
     return <div>Loading...</div>;
   }
 
-  
   const { name, summary, genres, rating, image } = selectedMovie;
-
 
   return (
     <div className="flex bg-gray-100 min-h-screen dark:bg-gray-700">
       <Navbar />
       <div className="m-20 flex">
         <div className="flex-none">
-        
           <img
             src={image ? image.medium : "https://placehold.it/200x280"}
             alt=""
@@ -139,7 +125,6 @@ const handleInputChange = (e) => {
         </div>
         <div className="flex-1 p-8 text-white">
           <div className="mb-6">
-           
             <div
               style={{ fontSize: "2.5rem" }}
               className="font-bold mb-2 text-4xl"
@@ -155,7 +140,6 @@ const handleInputChange = (e) => {
             </div>
           </div>
           <div className="flex mb-4">
-          
             <span className="inline-block text-black bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold mr-2">
               {genres.slice(0, 1).join(", ")}
             </span>
@@ -163,7 +147,7 @@ const handleInputChange = (e) => {
               {rating.average ? `${rating.average} / 10` : "N/A"}
             </span>
           </div>
-         
+
           <button
             className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600"
             onClick={handleBookTicket}
@@ -180,7 +164,6 @@ const handleInputChange = (e) => {
             overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center"
           >
             <div className="flex justify-end mb-2">
-           
               <button
                 className="text-gray-500 hover:text-gray-700 focus:outline-none"
                 onClick={closeModal}
@@ -201,11 +184,10 @@ const handleInputChange = (e) => {
                 </svg>
               </button>
             </div>
-           
+
             <h2 className="text-xl font-bold mb-2">Book Ticket</h2>
-           
+
             <form onSubmit={handleFormSubmit}>
-           
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-600">
                   Name: <span className="text-red-500">*</span>
@@ -219,7 +201,7 @@ const handleInputChange = (e) => {
                   required
                 />
               </div>
-            
+
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-600">
                   Email: <span className="text-red-500">*</span>
@@ -233,7 +215,7 @@ const handleInputChange = (e) => {
                   required
                 />
               </div>
-           
+
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-600">
                   Age: <span className="text-red-500">*</span>
@@ -252,7 +234,7 @@ const handleInputChange = (e) => {
                   ))}
                 </select>
               </div>
-            
+
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-600">
                   Number of Tickets: <span className="text-red-500">*</span>
@@ -266,7 +248,7 @@ const handleInputChange = (e) => {
                   required
                 />
               </div>
-           
+
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-600">
                   Total Price:
@@ -276,7 +258,6 @@ const handleInputChange = (e) => {
                 </span>
               </div>
 
-            
               <div className="flex justify-end">
                 <button
                   type="submit"
@@ -289,6 +270,7 @@ const handleInputChange = (e) => {
           </Modal>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

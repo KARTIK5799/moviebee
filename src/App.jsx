@@ -1,8 +1,7 @@
-
 // eslint-disable-next-line no-unused-vars
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Firstpage from './pages/Firstpage';
-import Secondpage from './pages/Secondpage';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Firstpage from "./pages/Firstpage";
+import Secondpage from "./pages/Secondpage";
 
 const App = () => {
   return (
