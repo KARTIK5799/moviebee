@@ -270,7 +270,7 @@ const Secondpage = () => {
           </Modal>
         </div>
       </div>
-      <Footer />
+ 
     </div>
   );
 };
